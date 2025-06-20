@@ -1,4 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CameraIcon from "@/components/icons/CameraIcon.vue";
+import DotsIcon from "@/components/icons/DotsIcon.vue";
+import PhoneIcon from "@/components/icons/PhoneIcon.vue";
+import SendIcon from "@/components/icons/SendIcon.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const closeSesion = () => {
+  localStorage.removeItem("userToken");
+  router.push("/login");
+};
+</script>
 
 <template>
   <div class="bg-zinc-900 rounded-sm min-w-md text-white">
@@ -14,19 +26,20 @@
       </div>
       <div class="flex">
         <button
-          class="size-8 hover:bg-zinc-950 active:scale-90 rounded-full transition-all duration-300"
+          class="size-9 flex justify-center items-center hover:bg-zinc-950 active:scale-90 rounded-full transition-all duration-300"
         >
-          T
+          <PhoneIcon />
         </button>
         <button
-          class="size-8 hover:bg-zinc-950 active:scale-90 rounded-full transition-all duration-300"
+          class="size-9 flex justify-center items-center hover:bg-zinc-950 active:scale-90 rounded-full transition-all duration-300"
         >
-          V
+          <CameraIcon />
         </button>
         <button
-          class="size-8 hover:bg-zinc-950 active:scale-90 rounded-full transition-all duration-300"
+          class="size-9 flex justify-center items-center hover:bg-zinc-950 active:scale-90 rounded-full transition-all duration-300"
+          @click="closeSesion()"
         >
-          M
+          <DotsIcon />
         </button>
       </div>
     </header>
@@ -62,8 +75,10 @@
         type="text"
         placeholder="Escribe un mensaje..."
       />
-      <button class="bg-teal-600 rounded-sm py-2 px-6 font-bold transition-all active:scale-90">
-        Enviar
+      <button
+        class="bg-teal-600 rounded-full p-2 font-bold transition-all active:scale-90 cursor-pointer"
+      >
+        <SendIcon />
       </button>
     </footer>
   </div>
